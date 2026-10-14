@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para mi niña 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#ff8fb3;
+  --blush:#ffd6e7;
+  --gold:#f7e7b4;
+  --ink:#fff8fb;
+  --pad: clamp(10px, 3.2vw, 22px);
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{
+  margin:0;width:100%;
+  height:100%;
+  height:100dvh;
+  overflow:hidden;
+  background:#12010c;color:var(--ink);
+  font-family:"Cormorant Garamond",Georgia,serif;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+button,a{font-family:inherit}
+#bg{
+  position:fixed;inset:0;
+  background:
+    radial-gradient(circle at 80% 12%,rgba(255,196,220,.28),transparent 38%),
+    radial-gradient(circle at 18% 78%,rgba(120,40,80,.35),transparent 42%),
+    url('https://i.pinimg.com/736x/ea/04/c8/ea04c8d02368046a9a0b10d31f08b5e4.jpg') center/cover no-repeat;
+  filter:saturate(1.08) contrast(1.04);
+}
+#veil{position:fixed;inset:0;background:linear-gradient(180deg,rgba(18,1,12,.28),rgba(18,1,12,.62) 70%,rgba(8,0,6,.82));pointer-events:none}
+.star,.spark{position:absolute;pointer-events:none}
+.petal{position:fixed;pointer-events:none}
+.star{width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 2.4s infinite alternate}
+@keyframes twinkle{from{opacity:.15;transform:scale(.7)}to{opacity:1;transform:scale(1.4)}}
+.petal{font-size:clamp(12px,4vw,18px);animation:fall linear forwards;opacity:.85}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+.click-heart{position:fixed;pointer-events:none;animation:pop 1.1s ease forwards;z-index:40}
+@keyframes pop{0%{transform:translateY(0) scale(.6);opacity:1}100%{transform:translateY(-90px) scale(1.6);opacity:0}}
+.screen{
+  position:absolute;inset:0;
+  display:none;flex-direction:column;justify-content:center;align-items:center;
+  padding: calc(var(--safe-t) + 56px) calc(var(--safe-r) + var(--pad)) calc(var(--safe-b) + 28px) calc(var(--safe-l) + var(--pad));
+  text-align:center;z-index:2;
+  overflow:hidden;
+}
+.screen.active{display:flex}
+.card{
+  width:min(720px,100%);
+  max-height:100%;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+  padding: clamp(14px, 3.5vw, 28px) clamp(14px, 3.2vw, 26px) clamp(16px, 3vw, 24px);
+  background:linear-gradient(180deg,rgba(28,6,18,.72),rgba(12,2,10,.78));
+  border:1px solid rgba(255,210,230,.22);
+  border-radius:clamp(18px,4vw,28px);
+  backdrop-filter:blur(14px);
+  box-shadow:0 20px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.12);
+}
+h1,h2{margin:0 0 8px;font-weight:500}
+.script{
+  font-family:"Great Vibes",cursive;
+  font-size:clamp(34px, 11vw, 72px);
+  line-height:1.05;
+  color:#ffe6f0;
+  text-shadow:0 8px 30px rgba(255,120,170,.35);
+}
+.serif{font-family:"Playfair Display",serif}
+.lead{font-size:clamp(16px, 3.8vw, 22px);line-height:1.55;opacity:.95;margin:8px 0 0}
+.soft{opacity:.82;font-size:clamp(14px, 3.4vw, 17px);line-height:1.5}
+.btn{
+  margin-top:clamp(14px, 3.5vw, 22px);
+  border:0;cursor:pointer;color:#3b1020;
+  background:linear-gradient(180deg,#ffe3ef,#ff9fbf);
+  padding:12px 22px;min-height:44px;
+  border-radius:999px;
+  font-size:clamp(16px, 4vw, 18px);
+  letter-spacing:.3px;
+  box-shadow:0 10px 24px rgba(255,110,160,.28);
+  transition:transform .18s ease, filter .18s ease;
+  max-width:100%;
+}
+.btn:active{transform:scale(.94)}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{filter:brightness(1.05)}
+  .love-heart:hover{transform:translateY(-4px) scale(1.04);background:rgba(255,140,180,.32)}
+  .promise:hover{border-color:rgba(255,210,230,.35);background:rgba(255,160,190,.14)}
+}
+.ghost{background:transparent;color:#ffe6f0;border:1px solid rgba(255,210,230,.4);box-shadow:none}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.counter{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:8px;
+  margin:14px 0 6px;
+}
+.chip{
+  min-width:0;padding:10px 6px;border-radius:16px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,210,230,.18);
+}
+.chip b{display:block;font-size:clamp(18px,5.4vw,28px);font-family:"Playfair Display",serif;color:var(--gold)}
+.chip span{font-size:clamp(9px,2.4vw,12px);letter-spacing:.8px;text-transform:uppercase;opacity:.75}
+.hearts-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:clamp(8px, 2vw, 12px);
+  margin:14px 0 8px;
+}
+.love-heart{
+  aspect-ratio:1;border:0;border-radius:clamp(14px,3vw,24px);cursor:pointer;color:#fff;
+  background:rgba(255,140,180,.18);font-size:clamp(22px, 7vw, 34px);
+  min-height:48px;
+  box-shadow:inset 0 0 0 1px rgba(255,210,230,.2);
+  transition:transform .2s ease, background .2s ease;
+}
+.love-heart.open{background:linear-gradient(180deg,#ff8fb3,#c94d7a);box-shadow:0 10px 24px rgba(255,90,140,.35)}
+#reveal{
+  min-height:4.6em;margin-top:8px;padding:12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.06);
+  font-size:clamp(15px, 3.8vw, 20px);
+  line-height:1.45;font-style:italic;
+}
+.promises{display:grid;gap:8px;margin-top:12px}
+.promise{
+  text-align:left;
+  padding:clamp(10px, 2.5vw, 14px) clamp(12px, 2.8vw, 16px);
+  border-radius:14px;cursor:pointer;
+  background:rgba(255,255,255,.06);border:1px solid transparent;
+  font-size:clamp(14px, 3.5vw, 17px);
+  line-height:1.45;
+  transition:.2s ease;
+}
+.promise.on{border-color:rgba(255,210,230,.35);background:rgba(255,160,190,.14)}
+.kiss-zone{
+  margin:12px auto 0;width:min(220px,70vw);height:clamp(84px, 18vw, 110px);border-radius:999px;
+  display:grid;place-items:center;cursor:pointer;user-select:none;
+  background:radial-gradient(circle at 50% 40%,rgba(255,180,210,.35),rgba(255,90,140,.08));
+  border:1px dashed rgba(255,210,230,.35);
+}
+.kiss-zone span{font-size:clamp(36px, 10vw, 48px);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+#end img{width:min(200px,52vw);max-width:100%;height:auto;border-radius:16px;display:block}
+.polaroid{display:inline-block;background:#fff8fb;padding:8px 8px 14px;border-radius:6px;transform:rotate(-2deg);box-shadow:0 16px 40px rgba(0,0,0,.4);max-width:100%}
+.music{
+  position:fixed;
+  top:calc(var(--safe-t) + 10px);
+  right:calc(var(--safe-r) + 10px);
+  z-index:5;width:44px;height:44px;border-radius:50%;
+  border:1px solid rgba(255,210,230,.35);background:rgba(20,4,12,.55);color:#fff;cursor:pointer;
+}
+.progress{
+  position:fixed;
+  left:calc(var(--safe-l) + 14px);
+  right:calc(var(--safe-r) + 14px);
+  bottom:calc(var(--safe-b) + 10px);
+  height:4px;background:rgba(255,255,255,.12);border-radius:99px;z-index:5;overflow:hidden;
+}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#ffd6e7,#ff8fb3,#f7e7b4);transition:width .4s ease}
+.tiny{font-size:clamp(10px, 2.8vw, 13px);letter-spacing:1.6px;text-transform:uppercase;opacity:.7;margin:0 0 8px}
+#letter{text-align:left;min-height:min(180px, 32vh);cursor:pointer}
+.end-title{margin-top:12px}
+
+@media (max-width: 420px){
+  .counter{grid-template-columns:repeat(2, minmax(0,1fr))}
+  .btn{width:100%}
+}
+@media (min-width: 700px){
+  .hearts-grid{grid-template-columns:repeat(6, minmax(0,1fr))}
+}
+@media (max-height: 560px){
+  .screen{padding-top:calc(var(--safe-t) + 44px);padding-bottom:calc(var(--safe-b) + 20px);justify-content:flex-start}
+  .script{font-size:clamp(28px, 8vw, 48px)}
+  #end img{width:min(140px,36vw)}
+  .kiss-zone{height:72px;width:min(180px,60vw)}
+  .lead{font-size:clamp(14px, 3.2vw, 18px)}
+  #reveal{min-height:3.4em}
+  .hearts-grid{grid-template-columns:repeat(3, minmax(0,1fr));gap:6px}
+  .love-heart{font-size:20px;border-radius:12px}
+}
+@media (min-width: 700px) and (max-height: 560px){
+  .hearts-grid{grid-template-columns:repeat(6, minmax(0,1fr))}
+}
+@media (max-width: 360px){
+  :root{--pad:10px}
+  .screen{padding-left:calc(var(--safe-l) + var(--pad));padding-right:calc(var(--safe-r) + var(--pad))}
+  .card{padding:14px 12px 16px}
+  .script{font-size:clamp(32px, 10vw, 48px)}
+  .counter{gap:6px}
+  .chip{padding:8px 4px}
+}
+@media (prefers-reduced-motion: reduce){
+  .star,.petal,.click-heart,.kiss-zone span{animation:none}
+}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div id="veil"></div>
+<button class="music" id="music" title="Reproducir música" aria-label="Reproducir música">♪</button>
+<audio id="audio" preload="metadata" loop>
+  <source src="./gone-gone-gone.mp3" type="audio/mpeg">
+</audio>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<section class="screen active" id="s0">
+  <div class="card">
+    <p class="tiny">Una carta solo para ti</p>
+    <h1 class="script">Mi niña</h1>
+    <p class="lead">El amor de mi vida, mi bebé, mi mimadita… hay un pedacito de cielo guardado aquí, con tu nombre escrito en cada latido.</p>
+    <p class="soft">Ábrelo despacio. Está hecho con todo lo que siento por ti.</p>
+    <button class="btn" data-next>💌 Abrir con el corazón</button>
+  </div>
+</section>
+
+<section class="screen" id="s1">
+  <div class="card">
+    <p class="tiny">El día que te encontré</p>
+    <h2 class="script">4 de julio, 2024</h2>
+    <p class="lead">Ese día el mundo se volvió más suave. Llegaste tú, y de pronto supe qué significaba querer a alguien como se quiere un hogar: con ternura, con hambre de cuidarte, con ganas de mimarte siempre.</p>
+    <div class="counter" id="counter"></div>
+    <p class="soft">Cada número es un “te elijo otra vez”, mi amor.</p>
+    <button class="btn" data-next>Sigue, mi vida →</button>
+  </div>
+</section>
+
+<section class="screen" id="s2">
+  <div class="card">
+    <p class="tiny">Léeme en voz baja · toca para adelantar</p>
+    <div id="letter" class="lead serif"></div>
+    <button class="btn" data-next id="afterLetter" style="display:none">Quiero decirte más →</button>
+  </div>
+</section>
+
+<section class="screen" id="s3">
+  <div class="card">
+    <p class="tiny">Toca cada corazón</p>
+    <h2 class="script">Cómo te nombro</h2>
+    <p class="soft">Eres tantas formas de amor que una sola palabra no alcanza.</p>
+    <div class="hearts-grid">
+      <button class="love-heart" data-msg="Mi niña… la que me desarma con una sonrisa y me hace querer ser más suave con el mundo.">💗</button>
+      <button class="love-heart" data-msg="Mi bebé… a ti te guardo en lo más cálido de mí, como quien abriga algo sagrado.">🌙</button>
+      <button class="love-heart" data-msg="Mi mimadita… mereces mimos infinitos, besos lentos y que te recuerde todos los días lo preciosa que eres.">🌸</button>
+      <button class="love-heart" data-msg="El amor de mi vida. No hay duda, no hay mitad: eres tú, solo tú, siempre tú.">✨</button>
+      <button class="love-heart" data-msg="Mi cielo chiquito. Contigo hasta lo simple se vuelve un milagro que quiero repetir.">🦋</button>
+      <button class="love-heart" data-msg="Mi reina. Te adoro, te celebro, te cuido. Eres mi lugar favorito en esta vida.">👑</button>
+    </div>
+    <div id="reveal">Toca un corazón, mi amor…</div>
+    <button class="btn" data-next>Aún hay más cariño →</button>
+  </div>
+</section>
+
+<section class="screen" id="s4">
+  <div class="card">
+    <p class="tiny">Promesas que ya son mías</p>
+    <h2 class="script">Para ti, siempre</h2>
+    <div class="promises">
+      <div class="promise">Te voy a elegir incluso en los días nublados, porque amarte no depende del clima: depende de ti.</div>
+      <div class="promise">Voy a escucharte con el alma, no solo con los oídos. Tu voz me calma y me enamora.</div>
+      <div class="promise">Voy a mimarte sin medida: tu risa, tus caprichitos lindos, tus silencios, todo lo que eres.</div>
+      <div class="promise">Si me equivoco, volveré a ti más tierno, más atento, más tuyo. Jamás dejaré de intentarlo por nosotros.</div>
+      <div class="promise">Quiero una vida llena de recuerdos contigo: mañanas lentas, noches de “te extraño”, y mil “buenos días, mi niña”.</div>
+    </div>
+    <button class="btn" data-next>Un último mimo →</button>
+  </div>
+</section>
+
+<section class="screen" id="s5">
+  <div class="card" id="end">
+    <p class="tiny">Esto no se acaba</p>
+    <div class="polaroid"><img src="https://i.pinimg.com/736x/30/ac/68/30ac68c8d3951075c693293942f4e0b7.jpg" alt="Un momento nuestro"></div>
+    <h2 class="script end-title">Te amo solo a ti</h2>
+    <p class="lead">Mi niña, mi bebé, mi mimadita, el amor de mi vida. Gracias por existir. Gracias por dejarme quererte así, con todo.</p>
+    <p class="soft" id="kisses">Toca el corazón y recoge los besos.</p>
+    <div class="kiss-zone" id="kiss" role="button" tabindex="0"><span>💓</span></div>
+    <p class="soft end-title">Hoy, mañana y en cada 4 de julio que nos regale el tiempo… yo sigo siendo tuyo.</p>
+    <div class="row">
+      <button class="btn ghost" id="replay">Leer otra vez</button>
+    </div>
+  </div>
+</section>
+
+<script>
+const bg = document.getElementById("bg");
+const screens = [...document.querySelectorAll(".screen")];
+const bar = document.getElementById("bar");
+let step = 0;
+let kissCount = 0;
+
+for (let i = 0; i < 90; i++) {
+  const s = document.createElement("div");
+  s.className = "star";
+  s.style.left = Math.random() * 100 + "%";
+  s.style.top = Math.random() * 100 + "%";
+  s.style.animationDuration = 1.4 + Math.random() * 2.4 + "s";
+  bg.appendChild(s);
+}
+
+function petals() {
+  const p = document.createElement("div");
+  p.className = "petal";
+  p.textContent = ["🌸", "💗", "✨", "🌹", "🤍"][Math.floor(Math.random() * 5)];
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.top = "-20px";
+  p.style.fontSize = 14 + Math.random() * 16 + "px";
+  p.style.animationDuration = 7 + Math.random() * 7 + "s";
+  document.body.appendChild(p);
+  setTimeout(() => p.remove(), 14000);
+}
+setInterval(petals, 420);
+
+document.addEventListener("pointerdown", e => {
+  if (e.target.closest("button") || e.target.closest(".promise") || e.target.closest(".kiss-zone")) return;
+  for (let i = 0; i < 8; i++) {
+    const h = document.createElement("div");
+    h.className = "click-heart";
+    h.textContent = ["❤", "💗", "💕"][i % 3];
+    h.style.left = e.clientX + (Math.random() * 36 - 18) + "px";
+    h.style.top = e.clientY + (Math.random() * 24 - 12) + "px";
+    h.style.fontSize = 16 + Math.random() * 14 + "px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 1100);
+  }
+});
+
+function show(n) {
+  step = n;
+  screens.forEach((s, i) => s.classList.toggle("active", i === n));
+  bar.style.width = ((n) / (screens.length - 1)) * 100 + "%";
+  if (n === 1) fillCounter();
+  if (n === 2) typeLetter();
+}
+document.querySelectorAll("[data-next]").forEach(b => b.addEventListener("click", () => show(step + 1)));
+document.getElementById("replay").addEventListener("click", () => {
+  kissCount = 0;
+  document.getElementById("kisses").textContent = "Toca el corazón y recógelo besos.";
+  document.querySelectorAll(".love-heart").forEach(h => h.classList.remove("open"));
+  document.getElementById("reveal").textContent = "Toca un corazón, mi amor…";
+  document.getElementById("afterLetter").style.display = "none";
+  document.getElementById("letter").innerHTML = "";
+  typed = false;
+  show(0);
+});
+
+function fillCounter() {
+  const start = new Date(2024, 6, 4, 0, 0, 0);
+  const now = new Date();
+  const ms = Math.max(0, now - start);
+  const days = Math.floor(ms / 86400000);
+  const hours = Math.floor((ms % 86400000) / 3600000);
+  const mins = Math.floor((ms % 3600000) / 60000);
+  const months = Math.floor(days / 30.437);
+  const parts = [
+    [days, "días"],
+    [months, "lunas"],
+    [hours, "horas"],
+    [mins, "minutos"]
+  ];
+  document.getElementById("counter").innerHTML = parts.map(([n, l]) =>
+    `<div class="chip"><b>${n}</b><span>${l}</span></div>`
+  ).join("");
+}
+setInterval(() => { if (step === 1) fillCounter(); }, 30000);
+
+const letter = `Mi niña, mi bebé, mi mimadita…
+
+Si pudiera, te envolvería en esta carta como se envuelve a alguien a quien se adora: despacio, con calor, con miedo de soltarte.
+
+Desde el 4 de julio de 2024 supe que el amor de mi vida tenía tu risa, tu forma de existir, esa luz tuya que me desarma.
+
+Te amo en lo grande y en lo chiquito. Te amo cuando estás brillante y cuando necesitas que te mimen. Te amo por ser tú, sin condiciones, sin prisa, sin medida.
+
+Eres mi lugar seguro. Eres la razón por la que el día se siente más bonito. Eres la persona a la que quiero cuidar, celebrar y besar el alma.
+
+No hay nadie más. No hay un “casi”. Eres tú. Solo tú.
+
+Gracias por dejarme ser tuyo.
+Te amo con todo lo que soy, hoy y en cada mañana que nos falte. 💗`;
+
+let typed = false;
+function typeLetter() {
+  if (typed) {
+    document.getElementById("afterLetter").style.display = "inline-block";
+    return;
+  }
+  typed = true;
+  const el = document.getElementById("letter");
+  el.innerHTML = "";
+  let i = 0;
+    const finish = () => {
+    el.innerHTML = letter.replaceAll("\n", "<br>");
+    document.getElementById("afterLetter").style.display = "inline-block";
+  };
+  const t = setInterval(() => {
+    const ch = letter[i];
+    el.innerHTML += ch === "\n" ? "<br>" : ch;
+    i++;
+    el.scrollTop = el.scrollHeight;
+    if (i >= letter.length) {
+      clearInterval(t);
+      document.getElementById("afterLetter").style.display = "inline-block";
+    }
+  }, 22);
+  el.addEventListener("click", () => { clearInterval(t); finish(); }, { once: true });
+}
+
+document.querySelectorAll(".love-heart").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".love-heart").forEach(b => b.classList.remove("open"));
+    btn.classList.add("open");
+    document.getElementById("reveal").textContent = btn.dataset.msg;
+  });
+});
+
+document.querySelectorAll(".promise").forEach(p => {
+  p.addEventListener("click", () => p.classList.toggle("on"));
+});
+
+document.getElementById("kiss").addEventListener("click", () => {
+  kissCount++;
+  const n = ["un besito", "dos besos", "tres mimos", "un montón de cariño", "todo mi amor"][Math.min(kissCount - 1, 4)];
+  document.getElementById("kisses").textContent =
+    kissCount < 5
+      ? `Mmm… ${n} para mi mimadita. Sigue tocando.`
+      : `Ya van ${kissCount} besos. Y todavía me faltan millones para ti, mi vida.`;
+});
+
+const audio = document.getElementById("audio");
+const musicBtn = document.getElementById("music");
+function updateMusicButton(isPlaying) {
+  musicBtn.textContent = isPlaying ? "♫" : "♪";
+  musicBtn.setAttribute("aria-label", isPlaying ? "Pausar música" : "Reproducir música");
+  musicBtn.title = isPlaying ? "Pausar música" : "Reproducir música";
+}
+audio.addEventListener("play", () => updateMusicButton(true));
+audio.addEventListener("pause", () => updateMusicButton(false));
+audio.addEventListener("error", () => {
+  musicBtn.textContent = "!";
+  musicBtn.setAttribute("aria-label", "No se pudo cargar la música");
+  musicBtn.title = "No se pudo cargar la música";
+});
+musicBtn.addEventListener("click", async () => {
+  if (audio.paused) {
+    try {
+      await audio.play();
+    } catch (error) {
+      musicBtn.textContent = "!";
+      musicBtn.setAttribute("aria-label", "No se pudo reproducir la música");
+      musicBtn.title = "No se pudo reproducir la música. Comprueba que el archivo de audio esté disponible.";
+      console.error("No se pudo reproducir el archivo de música.", error);
+    }
+  } else {
+    audio.pause();
+  }
+});
+</script>
+</body>
+</html>
